@@ -9,3 +9,5 @@ RUN apk update \
 
 WORKDIR /opt/command_service
 COPY ./tabecolla_backend/command_service /opt/command_service
+RUN go mod tidy \
+  && go install github.com/onsi/ginkgo/v2/ginkgo
