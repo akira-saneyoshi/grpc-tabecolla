@@ -66,3 +66,50 @@ syntax = "proto3"; // ライセンスヘッダ
 option go_package = "/api/v1/go_pb"; // 生成コードの格納先パッケージを指定
 package go_protoc; // パッケージの宣言
 ```
+
+### Ginkgo V2を使用したビヘイビア駆動開発用テストフレームワークの実行手順
+
+1. テストコードの実行コマンド
+
+下記は、飲食店モデル
+
+```
+/opt/command_service/domain/models/stores/tests # ginkgo -v
+```
+
+<details><summary>コンソールの実行ログ例</summary>
+
+```
+/opt/command_service/domain/models/stores/tests # ginkgo -v
+Running Suite: domain/models/storesパッケージのテスト - /opt/command_service/domain/models/stores/tests
+================================================================================================================
+Random Seed: 1717514749
+
+Will run 4 of 4 specs
+------------------------------
+Storeエンティティを構成する値オブジェクト 文字数の検証 空文字列の場合、errs.DomainErrorが返る [StoreId構造体の生成, 文字数]
+/opt/command_service/domain/models/stores/tests/value_test.go:29
+• [0.000 seconds]
+------------------------------
+Storeエンティティを構成する値オブジェクト 文字数の検証 36文字より大きい文字列の場合、errs.DomainErrorが返る [StoreId構造体の生成, 文字数]
+/opt/command_service/domain/models/stores/tests/value_test.go:32
+• [0.000 seconds]
+------------------------------
+Storeエンティティを構成する値オブジェクト UUID形式の検証 uuid以外の文字列の場合、errs.DomainErrorが返る [StoreId構造体の生成, UUID形式]
+/opt/command_service/domain/models/stores/tests/value_test.go:38
+• [0.000 seconds]
+------------------------------
+Storeエンティティを構成する値オブジェクト UUID形式の検証 36文字のuuid文字列の場合、StoreIdが返る [StoreId構造体の生成, UUID形式]
+/opt/command_service/domain/models/stores/tests/value_test.go:41
+• [0.000 seconds]
+------------------------------
+
+Ran 4 of 4 Specs in 0.002 seconds
+SUCCESS! -- 4 Passed | 0 Failed | 0 Pending | 0 Skipped
+PASS
+
+Ginkgo ran 1 suite in 936.73792ms
+Test Suite Passed
+```
+
+</details>
