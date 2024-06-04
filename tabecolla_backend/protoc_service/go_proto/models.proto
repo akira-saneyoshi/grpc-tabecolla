@@ -1,0 +1,29 @@
+//
+// クライアントとサーバ間で利用するデータ格納型を定義したprotoファイル
+//
+
+// ライセンスヘッダ:バージョン3を利用
+syntax = "proto3";
+// 生成コードの格納先パッケージを指定
+option go_package = "/api/v1/go_pb";
+// パッケージの宣言
+package go_protoc;
+
+//  ユーザ型の定義
+message User {
+    string user_id   = 1; // ユーザId
+    string user_name = 2; // ユーザ名
+    string user_mail = 3; // メールアドレス
+}
+//  飲食店カテゴリ型の定義
+message StoreCategory {
+    int32 store_category_id    = 1; // 飲食店カテゴリ番号
+    string store_category_name = 2; // 飲食店カテゴリ名
+}
+//  飲食店型の定義
+message Store {
+    string store_id                  = 1; // 飲食店Id
+    string store_name               = 2; // 飲食店名
+    string store_place              = 3; // 飲食店の場所
+    optional StoreCategory category = 4; // 飲食店カテゴリ
+}

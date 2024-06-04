@@ -1,0 +1,109 @@
+//
+//  CommandService用のParam型とResult型を定義したprotoファイル
+//
+
+// ライセンスヘッダ:バージョン3を利用
+syntax = "proto3";
+// 生成コードの格納先パッケージを指定
+option go_package = "/api/v1/go_pb";
+
+// error.protoのインポート
+import "go_proto/error.proto";
+// models.protoのインポート
+import "go_proto/models.proto";
+
+// google/protobufモジュールのデータ型をインポート
+import "google/protobuf/timestamp.proto";
+
+// パッケージの宣言
+package go_protoc;
+
+// 更新の種類
+enum CRUD {
+    UNKNOWN = 0;    // 不明
+    INSERT  = 1;    // 追加
+    UPDATE  = 2;    // 変更
+    DELETE  = 3;    // 削除
+}
+
+//*****************************************
+// ユーザ更新用param型とResult型の定義
+//*****************************************
+//  ユーザ更新Param型
+message UserUpParam {
+    CRUD   crud       = 1; // 更新の種類
+    string user_id    = 2; // ユーザId
+    string user_name  = 3; // ユーザ名
+    string  user_mail = 4; // メールアドレス
+}
+//  ユーザ更新Result型
+message UserUpResult {
+    User user         = 1;   // 更新結果
+    ApiError  error   = 2;   // 更新エラー
+    google.protobuf.Timestamp timestamp = 3;    // タイムスタンプ
+}
+
+//*****************************************
+// ユーザの更新サービス型の定義
+//*****************************************
+//  ユーザ更新サービス型
+service UserCommand {
+    // ユーザを追加した結果を返す
+    rpc Create(UserUpParam) returns(UserUpResult);
+    // ユーザを更新した結果を返す
+    rpc Update(UserUpParam) returns(UserUpResult);
+    // ユーザを削除した結果を返す
+    rpc Delete(UserUpParam) returns(UserUpResult);
+}
+
+//*****************************************
+// 飲食店カテゴリ更新用param型とResult型の定義
+//*****************************************
+//  飲食店カテゴリ更新Param型
+message StoreCategoryUpParam {
+    CRUD   crud    = 1; // 更新の種類
+    int32 store_category_id     = 2; // 飲食店カテゴリ番号
+    string store_category_name  = 3; // 飲食店カテゴリ名
+}
+//  飲食店更新Param型
+message StoreUpParam {
+    CRUD   crud            = 1; // 更新の種類
+    string store_id        = 2; // 飲食店番号
+    string store_name      = 3; // 飲食店名
+    string store_place     = 4; // 飲食店の場所
+    int32 storeCategoryId  = 5; // 飲食店カテゴリ番号
+}
+//  飲食店カテゴリ更新Result型
+message StoreCategoryUpResult {
+    StoreCategory   storeCategory = 1; // 更新結果
+    ApiError      error           = 2; // 更新エラー
+    google.protobuf.Timestamp timestamp = 3;    // タイムスタンプ
+}
+//  飲食店更新Result型
+message StoreUpResult {
+    Store store     = 1; // 更新結果
+    ApiError  error = 2; // 更新エラー
+    google.protobuf.Timestamp timestamp = 3; // タイムスタンプ
+}
+
+//*****************************************
+// 飲食店カテゴリと飲食店の更新サービス型の定義
+//*****************************************
+//  飲食店カテゴリ更新サービス型
+service StoreCategoryCommand {
+    // 飲食店カテゴリを追加した結果を返す
+    rpc Create(StoreCategoryUpParam) returns(StoreCategoryUpResult);
+    // 飲食店カテゴリを更新した結果を返す
+    rpc Update(StoreCategoryUpParam) returns(StoreCategoryUpResult);
+    // 飲食店カテゴリを削除した結果を返す
+    rpc Delete(StoreCategoryUpParam) returns(StoreCategoryUpResult);
+}
+//  飲食店更新サービス型
+service StoreCommand {
+    // 飲食店を追加した結果を返す
+    rpc Create(StoreUpParam) returns(StoreUpResult);
+    // 飲食店を更新した結果を返す
+    rpc Update(StoreUpParam) returns(StoreUpResult);
+    // 飲食店を削除した結果を返す
+    rpc Delete(StoreUpParam) returns(StoreUpResult);
+}

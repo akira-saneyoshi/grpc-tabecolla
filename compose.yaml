@@ -1,0 +1,35 @@
+services:
+  protocservice:
+    build:
+      context: .
+      dockerfile: ./infra/protoc/Dockerfile
+    container_name: protoc-service
+    hostname: protocservice
+    tty: true
+    volumes:
+      - ./tabecolla_backend/protoc_service:/opt/protoc_service
+    # command: sh -c "go mod tidy"
+    ports:
+      - 8090:8090
+  commandservice:
+    build:
+      context: .
+      dockerfile: ./infra/go_command/Dockerfile
+    container_name: command-service
+    hostname: commandservice
+    tty: true
+    volumes:
+      - ./tabecolla_backend/command_service:/opt/command_service
+    ports:
+      - 8082:8082
+  queryservice:
+    build:
+      context: .
+      dockerfile: ./infra/go_query/Dockerfile
+    container_name: query-service
+    hostname: queryservice
+    tty: true
+    volumes:
+      - ./tabecolla_backend/query_service:/opt/query_service
+    ports:
+      - 8083:8083

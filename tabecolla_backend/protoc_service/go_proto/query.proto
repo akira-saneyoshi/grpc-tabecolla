@@ -1,0 +1,112 @@
+//
+//  QueryService用のParam型とResult型を定義したprotoファイル
+//
+
+// ライセンスヘッダ:バージョン3を利用
+syntax = "proto3";
+// 生成コードの格納先パッケージを指定
+option go_package = "/api/v1/go_pb";
+
+// error.protoのインポート
+import "go_proto/error.proto";
+// models.protoのインポート
+import "go_proto/models.proto";
+
+// google/protobufモジュールのデータ型をインポート
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+// パッケージの宣言
+package go_protoc;
+
+//*****************************************
+// ユーザ検索用param型とResult型の定義
+//*****************************************
+//  ユーザ検索用Param型
+message UserParam {
+    string user_id = 1; // ユーザId
+}
+//  ユーザ複数件を返すResult型
+message UsersResult {
+    repeated User    users = 1; // ユーザ複数
+    ApiError         error = 2; // エラー
+    google.protobuf.Timestamp timestamp = 3;    // タイムスタンプ
+}
+//  ユーザ1件を返すResult型
+message UserResult{
+    // エラーか検索結果のいずれかを返す
+    oneof result {
+        User user = 1; // 検索結果
+        ApiError   error = 2; // 検索エラー
+    }
+    google.protobuf.Timestamp timestamp = 3;    // タイムスタンプ
+}
+
+//*****************************************
+// 飲食店カテゴリ検索用param型とResult型の定義
+//*****************************************
+//  飲食店カテゴリ検索用Param型
+message StoreCategoryParam {
+    int32 store_category_id = 1; // 飲食店カテゴリ番号
+}
+//  飲食店カテゴリ複数件を返すResult型
+message StoreCategoriesResult {
+    repeated StoreCategory store_categories = 1; // 飲食店カテゴリ複数
+    ApiError               error            = 2; // エラー
+    google.protobuf.Timestamp timestamp     = 3; // タイムスタンプ
+}
+//  飲食店カテゴリ1件を返すResult型
+message StoreCategoryResult {
+    // エラーか検索結果のいずれかを返す
+    oneof result {
+        StoreCategory store_category = 1; // 飲食店カテゴリ
+        ApiError      error          = 2; // エラー
+    }
+    google.protobuf.Timestamp timestamp = 3;    // タイムスタンプ
+}
+
+//*****************************************
+// 飲食店検索用param型とResult型の定義
+//*****************************************
+//  飲食店検索用Param型
+message StoreParam {
+    string store_id       = 1; // 飲食店番号
+    string store_keyword = 2; // キーワード
+}
+//  飲食店複数件を返すResult型
+message StoresResult {
+    repeated Store stores = 1; // 飲食店複数
+    ApiError       error  = 2; // エラー
+    google.protobuf.Timestamp timestamp = 3; // タイムスタンプ
+}
+//  飲食店1件を返すResult型
+message StoreResult{
+    // エラーか検索結果のいずれかを返す
+    oneof result {
+        Store store    = 1; // 検索結果
+        ApiError error = 2; // 検索エラー
+    }
+    google.protobuf.Timestamp timestamp = 3; // タイムスタンプ
+}
+
+//*****************************************
+// 飲食店カテゴリと飲食店の問合せサービス型の定義
+//*****************************************
+//  飲食店カテゴリ問合せサービス型
+service StoreCategoryQuery {
+    // すべてのカテゴリを取得して返す
+    rpc List(google.protobuf.Empty) returns (StoreCategoriesResult);
+    // 指定されたIDのカテゴリを取得して返す
+    rpc ById(StoreCategoryParam) returns (StoreCategoryResult);
+}
+//  飲食店問合せサービス型
+service StoreQuery{
+    // すべての飲食店を取得して返す(Server streaming RPC)
+    rpc ListStream(google.protobuf.Empty) returns (stream Store);
+    // すべての飲食店を取得して返す
+    rpc List(google.protobuf.Empty) returns (StoresResult);
+    // 指定されたIDの飲食店を取得して返す
+    rpc ById(StoreParam) returns (StoreResult);
+    // 指定されたキーワードの飲食店を取得して返す
+    rpc ByKeyword(StoreParam) returns (StoresResult);
+}
