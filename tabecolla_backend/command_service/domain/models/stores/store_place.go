@@ -6,7 +6,7 @@ import (
 	"unicode/utf8"
 )
 
-// 商品単価を保持する値オブジェクト
+// 飲食店の場所を保持する値オブジェクト
 type StorePlace struct {
 	value string
 }
