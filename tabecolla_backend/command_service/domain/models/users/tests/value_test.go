@@ -67,14 +67,14 @@ var _ = Describe("Userエンティティを構成する値オブジェクト", O
 	var length_over *errors.DomainError    // 50文字より大きい文字列　長さ7文字以上、50文字以内に違反する
 	var invalid_format *errors.DomainError // 無効な形式のメールアドレス
 	var invalid_domain *errors.DomainError // ドメイン部分が無効なメールアドレス
-	var user_email *users.UserEmail        // 有効なメールアドレス
+	var user_email *users.UserMail         // 有効なメールアドレス
 
 	BeforeAll(func() {
-		_, empty_str = users.NewUserEmail("")
-		_, length_over = users.NewUserEmail("aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeee@gmail.com")
-		_, invalid_format = users.NewUserEmail("invalid-email")
-		_, invalid_domain = users.NewUserEmail("aaa@.com")
-		user_email, _ = users.NewUserEmail("saneyoshi@dummymail.com")
+		_, empty_str = users.NewUserMail("")
+		_, length_over = users.NewUserMail("aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeee@gmail.com")
+		_, invalid_format = users.NewUserMail("invalid-email")
+		_, invalid_domain = users.NewUserMail("aaa@.com")
+		user_email, _ = users.NewUserMail("saneyoshi@dummymail.com")
 	})
 
 	Context("文字数の検証", Label("無効な文字数"), func() {

@@ -2,11 +2,9 @@ package users
 
 import (
 	"commandservice/errors"
-
-	"github.com/google/uuid"
 )
 
-// 飲食店を表すEntity
+// ユーザを表すEntity
 type User struct {
 	user_id       *UserId       // ユーザId
 	user_name     *UserName     // ユーザ名
@@ -33,6 +31,9 @@ func (ins *User) UserEnable() *UserEnable {
 }
 
 // 値の変更
+func (ins *User) ChangeUserId(user_id *UserId) {
+	ins.user_id = user_id
+}
 func (ins *User) ChangeUserName(user_name *UserName) {
 	ins.user_name = user_name
 }
@@ -51,29 +52,20 @@ func (ins *User) Equals(obj *User) (bool, *errors.DomainError) {
 	if obj == nil {
 		return false, errors.NewDomainError("引数でnilが指定されました。")
 	}
-	result := ins.user_id.Equlas(obj.UserId())
+	result := ins.user_id.Equals(obj.UserId())
 	return result, nil
 }
 
 // コンストラクタ
-func NewUser(user_name *UserName, user_mail *UserMail, user_password *UserPassword, user_enable *UserEnable) (*User, *errors.DomainError) {
-	if uid, err := uuid.NewRandom(); err != nil { // UUIDを生成する
-		return nil, errors.NewDomainError(err.Error())
-	} else {
-		// ユーザID用値オブジェクトを生成する
-		if user_id, err := NeeUserId(uid.String()); err != nil {
-			return nil, err
-		} else {
-			// ユーザエンティティのインスタンスを生成して返す
-			return &User{
-				user_id:       user_id,
-				user_name:     user_name,
-				user_mail:     user_mail,
-				user_password: user_password,
-				user_enable:   user_enable,
-			}, nil
-		}
-	}
+func NewUser(user_id *UserId, user_name *UserName, user_mail *UserMail, user_password *UserPassword, user_enable *UserEnable) (*User, *errors.DomainError) {
+	// ユーザエンティティのインスタンスを生成して返す
+	return &User{
+		user_id:       user_id,
+		user_name:     user_name,
+		user_mail:     user_mail,
+		user_password: user_password,
+		user_enable:   user_enable,
+	}, nil
 }
 
 // ユーザエンティティの再構築

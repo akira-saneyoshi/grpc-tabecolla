@@ -45,7 +45,7 @@ func (ins *Store) Equals(obj *Store) (bool, *errors.DomainError) {
 	if obj == nil {
 		return false, errors.NewDomainError("引数でnilが指定されました。")
 	}
-	result := ins.store_id.Equlas(obj.StoreId())
+	result := ins.store_id.Equals(obj.StoreId())
 	return result, nil
 }
 
