@@ -47,7 +47,7 @@ message UserResult{
 //*****************************************
 //  飲食店カテゴリ検索用Param型
 message StoreCategoryParam {
-    int32 store_category_id = 1; // 飲食店カテゴリ番号
+    string store_category_id = 1; // 飲食店カテゴリ番号
 }
 //  飲食店カテゴリ複数件を返すResult型
 message StoreCategoriesResult {

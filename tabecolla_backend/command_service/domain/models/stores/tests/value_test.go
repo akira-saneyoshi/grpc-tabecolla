@@ -78,7 +78,7 @@ var _ = Describe("Storeエンティティを構成する値オブジェクト", 
 	var store_place *stores.StorePlace  // 50文字以内の文字列を指定する
 
 	BeforeAll(func() {
-		_, empty_str = stores.NewStorePlace("a")
+		_, empty_str = stores.NewStorePlace("")
 		_, length_over = stores.NewStorePlace("aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeefff")
 		store_place, _ = stores.NewStorePlace("東京都墨田区押上１丁目１−２")
 	})

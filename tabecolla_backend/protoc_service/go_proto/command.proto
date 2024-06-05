@@ -34,7 +34,9 @@ message UserUpParam {
     CRUD   crud       = 1; // 更新の種類
     string user_id    = 2; // ユーザId
     string user_name  = 3; // ユーザ名
-    string  user_mail = 4; // メールアドレス
+    string user_mail  = 4; // メールアドレス
+    string user_password = 5; // ユーザパスワード
+    bool user_enable  = 6; // ユーザの有効/無効
 }
 //  ユーザ更新Result型
 message UserUpResult {
@@ -62,7 +64,7 @@ service UserCommand {
 //  飲食店カテゴリ更新Param型
 message StoreCategoryUpParam {
     CRUD   crud    = 1; // 更新の種類
-    int32 store_category_id     = 2; // 飲食店カテゴリ番号
+    string store_category_id     = 2; // 飲食店カテゴリ番号
     string store_category_name  = 3; // 飲食店カテゴリ名
 }
 //  飲食店更新Param型
@@ -71,7 +73,7 @@ message StoreUpParam {
     string store_id        = 2; // 飲食店番号
     string store_name      = 3; // 飲食店名
     string store_place     = 4; // 飲食店の場所
-    int32 storeCategoryId  = 5; // 飲食店カテゴリ番号
+    string storeCategoryId  = 5; // 飲食店カテゴリ番号
 }
 //  飲食店カテゴリ更新Result型
 message StoreCategoryUpResult {
