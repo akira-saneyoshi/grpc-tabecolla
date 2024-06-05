@@ -18,8 +18,8 @@ func (ins *StoreId) Value() string {
 }
 
 // 同一性検証
-func (ins *StoreId) Equlas(value *StoreId) bool {
-	if ins == value { // アドレスが同じ?
+func (ins *StoreId) Equals(value *StoreId) bool {
+	if ins == value {
 		return true
 	}
 	// 値の比較

@@ -16,6 +16,15 @@ func (ins *UserId) Value() string {
 	return ins.value
 }
 
+// 同一性検証
+func (ins *UserId) Equals(value *UserId) bool {
+	if ins == value {
+		return true
+	}
+	// 値の比較
+	return ins.value == value.Value()
+}
+
 // コンストラクタ
 func NewUserId(value string) (*UserId, *errors.DomainError) {
 	const MIN_LENGTH int = 3  // フィールドの最小文字数

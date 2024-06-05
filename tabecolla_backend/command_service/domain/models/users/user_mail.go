@@ -9,7 +9,7 @@ import (
 )
 
 // ユーザのメールアドレスを保持する値オブジェクト
-type UserEmail struct {
+type UserMail struct {
 	value string
 }
 
@@ -17,12 +17,12 @@ type UserEmail struct {
 var emailRegex = regexp.MustCompile(`^[^@]+@[^@]+$`)
 
 // ゲッター
-func (ins *UserEmail) Value() string {
+func (ins *UserMail) Value() string {
 	return ins.value
 }
 
 // コンストラクタ
-func NewUserEmail(value string) (*UserEmail, *errors.DomainError) {
+func NewUserMail(value string) (*UserMail, *errors.DomainError) {
 	const MIN_LENGTH int = 7  // フィールドの最小文字数
 	const MAX_LENGTH int = 50 // フィールドの最大文字数
 	count := utf8.RuneCountInString(value)
@@ -44,5 +44,5 @@ func NewUserEmail(value string) (*UserEmail, *errors.DomainError) {
 		return nil, errors.NewDomainError(errMsg)
 	}
 
-	return &UserEmail{value: value}, nil
+	return &UserMail{value: value}, nil
 }
