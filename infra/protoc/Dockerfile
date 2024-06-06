@@ -1,4 +1,4 @@
-FROM golang:1.22.3-alpine
+FROM golang:1.22.4-alpine
 ARG PROTOBUF_VERSION=27.0
 EXPOSE 8090
 

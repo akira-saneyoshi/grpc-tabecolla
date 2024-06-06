@@ -1,6 +1,6 @@
 module tabecolla/go_protoc
 
-go 1.22.3
+go 1.22.4
 
 require (
 	google.golang.org/grpc v1.64.0

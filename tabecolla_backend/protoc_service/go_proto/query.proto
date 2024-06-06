@@ -1,5 +1,5 @@
 //
-//  QueryService用のParam型とResult型を定義したprotoファイル
+// QueryService用のParam型とResult型を定義したprotoファイル
 //
 
 // ライセンスヘッダ:バージョン3を利用
@@ -22,17 +22,17 @@ package go_protoc;
 //*****************************************
 // ユーザ検索用param型とResult型の定義
 //*****************************************
-//  ユーザ検索用Param型
+// ユーザ検索用Param型
 message UserParam {
     string user_id = 1; // ユーザId
 }
-//  ユーザ複数件を返すResult型
+// ユーザ複数件を返すResult型
 message UsersResult {
     repeated User    users = 1; // ユーザ複数
     ApiError         error = 2; // エラー
     google.protobuf.Timestamp timestamp = 3;    // タイムスタンプ
 }
-//  ユーザ1件を返すResult型
+// ユーザ1件を返すResult型
 message UserResult{
     // エラーか検索結果のいずれかを返す
     oneof result {
@@ -45,17 +45,17 @@ message UserResult{
 //*****************************************
 // 飲食店カテゴリ検索用param型とResult型の定義
 //*****************************************
-//  飲食店カテゴリ検索用Param型
+// 飲食店カテゴリ検索用Param型
 message StoreCategoryParam {
-    string store_category_id = 1; // 飲食店カテゴリ番号
+    string store_category_uid = 1; // 飲食店カテゴリ番号
 }
-//  飲食店カテゴリ複数件を返すResult型
+// 飲食店カテゴリ複数件を返すResult型
 message StoreCategoriesResult {
     repeated StoreCategory store_categories = 1; // 飲食店カテゴリ複数
     ApiError               error            = 2; // エラー
     google.protobuf.Timestamp timestamp     = 3; // タイムスタンプ
 }
-//  飲食店カテゴリ1件を返すResult型
+// 飲食店カテゴリ1件を返すResult型
 message StoreCategoryResult {
     // エラーか検索結果のいずれかを返す
     oneof result {
@@ -68,18 +68,18 @@ message StoreCategoryResult {
 //*****************************************
 // 飲食店検索用param型とResult型の定義
 //*****************************************
-//  飲食店検索用Param型
+// 飲食店検索用Param型
 message StoreParam {
     string store_id       = 1; // 飲食店番号
     string store_keyword = 2; // キーワード
 }
-//  飲食店複数件を返すResult型
+// 飲食店複数件を返すResult型
 message StoresResult {
     repeated Store stores = 1; // 飲食店複数
     ApiError       error  = 2; // エラー
     google.protobuf.Timestamp timestamp = 3; // タイムスタンプ
 }
-//  飲食店1件を返すResult型
+// 飲食店1件を返すResult型
 message StoreResult{
     // エラーか検索結果のいずれかを返す
     oneof result {
@@ -92,14 +92,14 @@ message StoreResult{
 //*****************************************
 // 飲食店カテゴリと飲食店の問合せサービス型の定義
 //*****************************************
-//  飲食店カテゴリ問合せサービス型
+// 飲食店カテゴリ問合せサービス型
 service StoreCategoryQuery {
     // すべてのカテゴリを取得して返す
     rpc List(google.protobuf.Empty) returns (StoreCategoriesResult);
     // 指定されたIDのカテゴリを取得して返す
     rpc ById(StoreCategoryParam) returns (StoreCategoryResult);
 }
-//  飲食店問合せサービス型
+// 飲食店問合せサービス型
 service StoreQuery{
     // すべての飲食店を取得して返す(Server streaming RPC)
     rpc ListStream(google.protobuf.Empty) returns (stream Store);

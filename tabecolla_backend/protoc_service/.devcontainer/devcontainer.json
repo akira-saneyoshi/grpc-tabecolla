@@ -1,0 +1,20 @@
+{
+    "name": "tabecolla ProtocService" ,
+    "dockerComposeFile":[
+    "../../compose.yaml"
+    ],
+    "service":"protocservice",
+    "workspaceFolder": "/opt/command_service",
+    "customizations": {
+    "vscode": {
+        "extensions": [
+            "golang.go"
+        ],
+            "settings": {
+                "go.gopath": "/go" ,
+                "go.inferGopath": true ,
+                "go.useLanguageServer": true
+            }
+        }
+    }
+}

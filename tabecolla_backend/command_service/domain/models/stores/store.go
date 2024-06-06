@@ -2,7 +2,7 @@ package stores
 
 import (
 	"commandservice/domain/models/storeCategories"
-	"commandservice/errors"
+	"commandservice/errs"
 
 	"github.com/google/uuid"
 )
@@ -41,18 +41,18 @@ func (ins *Store) ChangeCategory(store_category *storeCategories.StoreCategory) 
 }
 
 // 同一性検証メソッド
-func (ins *Store) Equals(obj *Store) (bool, *errors.DomainError) {
+func (ins *Store) Equals(obj *Store) (bool, *errs.DomainError) {
 	if obj == nil {
-		return false, errors.NewDomainError("引数でnilが指定されました。")
+		return false, errs.NewDomainError("引数でnilが指定されました。")
 	}
 	result := ins.store_id.Equals(obj.StoreId())
 	return result, nil
 }
 
 // コンストラクタ
-func NewStore(store_name *StoreName, store_place *StorePlace, store_category *storeCategories.StoreCategory) (*Store, *errors.DomainError) {
+func NewStore(store_name *StoreName, store_place *StorePlace, store_category *storeCategories.StoreCategory) (*Store, *errs.DomainError) {
 	if uid, err := uuid.NewRandom(); err != nil { // UUIDを生成する
-		return nil, errors.NewDomainError(err.Error())
+		return nil, errs.NewDomainError(err.Error())
 	} else {
 		// 飲食店ID用値オブジェクトを生成する
 		if store_id, err := NewStoreId(uid.String()); err != nil {

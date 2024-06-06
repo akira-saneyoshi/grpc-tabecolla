@@ -33,3 +33,45 @@ services:
       - ./tabecolla_backend/query_service:/opt/query_service
     ports:
       - 8083:8083
+  commandservice_db:
+    build:
+      context: .
+      dockerfile: ./infra/db_command/Dockerfile
+    env_file: ./infra/db_command/db_env_file
+    container_name:  commandservice_db
+    command:
+      - --mysql-native-password=ON
+    volumes:
+      - db-tabecollacommand:/var/lib/mysql
+      - ./infra/db_command/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./infra/db_command/sql:/docker-entrypoint-initdb.d
+      - ./infra/db_command/DDL:/etc/ddl
+      - ./infra/logs/command:/var/log/mysql
+    ports:
+      - 3306:3306
+    expose:
+      - 3306
+    links:
+      - commandservice
+  queryservice_db:
+    build:
+      context: .
+      dockerfile: ./infra/db_query/Dockerfile
+    env_file: ./infra/db_query/db_env_file
+    container_name:  queryservice_db
+    command:
+      - --mysql-native-password=ON
+    volumes:
+      - db-tabecollaquery:/var/lib/mysql
+      - ./infra/db_query/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./infra/db_query/sql:/docker-entrypoint-initdb.d
+      - ./infra/db_query/DDL:/etc/ddl
+      - ./infra/logs/query:/var/log/mysql
+    ports:
+      - 3307:3306
+    links:
+      - commandservice
+      - queryservice
+volumes:
+  db-tabecollacommand:
+  db-tabecollaquery:

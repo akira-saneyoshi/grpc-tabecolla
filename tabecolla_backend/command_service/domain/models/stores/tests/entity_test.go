@@ -3,7 +3,7 @@ package stores_test
 import (
 	"commandservice/domain/models/storeCategories"
 	"commandservice/domain/models/stores"
-	"commandservice/errors"
+	"commandservice/errs"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
@@ -56,7 +56,7 @@ var _ = Describe("Storeエンティティ", Ordered, Label("Storeの同一性検
 		It("比較対象がnil", Label("nil検証"), func() {
 			By("nilを指定し,DomainErrorを返すことを検証する")
 			_, err := store.Equals(nil)
-			Expect(err).To(Equal(errors.NewDomainError("引数でnilが指定されました。")))
+			Expect(err).To(Equal(errs.NewDomainError("引数でnilが指定されました。")))
 		})
 	})
 

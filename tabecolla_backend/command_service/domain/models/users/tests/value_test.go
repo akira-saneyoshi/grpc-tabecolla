@@ -2,16 +2,16 @@ package users_test
 
 import (
 	"commandservice/domain/models/users"
-	"commandservice/errors"
+	"commandservice/errs"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 )
 
 var _ = Describe("Userエンティティを構成する値オブジェクト", Ordered, Label("UserId構造体の生成"), func() {
-	var empty_str *errors.DomainError   // 空文字列　長さ20に違反する
-	var length_over *errors.DomainError // 20文字より大きい文字列　長さ20に違反する
-	var user_id *users.UserId           // 20文字以内の文字列を指定する
+	var empty_str *errs.DomainError   // 空文字列　長さ20に違反する
+	var length_over *errs.DomainError // 20文字より大きい文字列　長さ20に違反する
+	var user_id *users.UserId         // 20文字以内の文字列を指定する
 
 	BeforeAll(func() {
 		_, empty_str = users.NewUserId("")
@@ -21,10 +21,10 @@ var _ = Describe("Userエンティティを構成する値オブジェクト", O
 
 	Context("文字数の検証", Label("文字数"), func() {
 		It("空文字列の場合、errors.DomainErrorが返る", func() {
-			Expect(empty_str).To(Equal(errors.NewDomainError("ユーザIDの長さは3文字以上、20文字以内です。")))
+			Expect(empty_str).To(Equal(errs.NewDomainError("ユーザIDの長さは3文字以上、20文字以内です。")))
 		})
 		It("20文字より大きい文字列の場合、errors.DomainErrorが返る", func() {
-			Expect(length_over).To(Equal(errors.NewDomainError("ユーザIDの長さは3文字以上、20文字以内です。")))
+			Expect(length_over).To(Equal(errs.NewDomainError("ユーザIDの長さは3文字以上、20文字以内です。")))
 		})
 	})
 
@@ -36,9 +36,9 @@ var _ = Describe("Userエンティティを構成する値オブジェクト", O
 })
 
 var _ = Describe("Userエンティティを構成する値オブジェクト", Ordered, Label("UserName構造体の生成"), func() {
-	var empty_str *errors.DomainError   // 空文字列　長さ3文字以上、20文字以内に違反する
-	var length_over *errors.DomainError // 20文字より大きい文字列　長さ3文字以上、20文字以内に違反する
-	var user_name *users.UserName       // 20文字以内の文字列を指定する
+	var empty_str *errs.DomainError   // 空文字列　長さ3文字以上、20文字以内に違反する
+	var length_over *errs.DomainError // 20文字より大きい文字列　長さ3文字以上、20文字以内に違反する
+	var user_name *users.UserName     // 20文字以内の文字列を指定する
 
 	BeforeAll(func() {
 		_, empty_str = users.NewUserName("")
@@ -48,10 +48,10 @@ var _ = Describe("Userエンティティを構成する値オブジェクト", O
 
 	Context("文字数の検証", Label("無効な文字数"), func() {
 		It("空文字列の場合、errors.DomainErrorが返る", func() {
-			Expect(empty_str).To(Equal(errors.NewDomainError("ユーザ名の長さは3文字以上、20文字以内です。")))
+			Expect(empty_str).To(Equal(errs.NewDomainError("ユーザ名の長さは3文字以上、20文字以内です。")))
 		})
-		It("20文字より大きいの場合,errors.DomainErrorが返る", func() {
-			Expect(length_over).To(Equal(errors.NewDomainError("ユーザ名の長さは3文字以上、20文字以内です。")))
+		It("20文字より大きいの場合,errs.DomainErrorが返る", func() {
+			Expect(length_over).To(Equal(errs.NewDomainError("ユーザ名の長さは3文字以上、20文字以内です。")))
 		})
 	})
 
@@ -63,11 +63,11 @@ var _ = Describe("Userエンティティを構成する値オブジェクト", O
 })
 
 var _ = Describe("Userエンティティを構成する値オブジェクト", Ordered, Label("UserEmail構造体の生成"), func() {
-	var empty_str *errors.DomainError      // 空文字列　長さ7文字以上、50文字以内に違反する
-	var length_over *errors.DomainError    // 50文字より大きい文字列　長さ7文字以上、50文字以内に違反する
-	var invalid_format *errors.DomainError // 無効な形式のメールアドレス
-	var invalid_domain *errors.DomainError // ドメイン部分が無効なメールアドレス
-	var user_email *users.UserMail         // 有効なメールアドレス
+	var empty_str *errs.DomainError      // 空文字列　長さ7文字以上、50文字以内に違反する
+	var length_over *errs.DomainError    // 50文字より大きい文字列　長さ7文字以上、50文字以内に違反する
+	var invalid_format *errs.DomainError // 無効な形式のメールアドレス
+	var invalid_domain *errs.DomainError // ドメイン部分が無効なメールアドレス
+	var user_email *users.UserMail       // 有効なメールアドレス
 
 	BeforeAll(func() {
 		_, empty_str = users.NewUserMail("")
@@ -79,22 +79,22 @@ var _ = Describe("Userエンティティを構成する値オブジェクト", O
 
 	Context("文字数の検証", Label("無効な文字数"), func() {
 		It("空文字列の場合、errors.DomainErrorが返る", func() {
-			Expect(empty_str).To(Equal(errors.NewDomainError("ユーザのメールアドレスの長さは7文字以上、50文字以内です。")))
+			Expect(empty_str).To(Equal(errs.NewDomainError("ユーザのメールアドレスの長さは7文字以上、50文字以内です。")))
 		})
-		It("50文字より大きい場合,errors.DomainErrorが返る", func() {
-			Expect(length_over).To(Equal(errors.NewDomainError("ユーザのメールアドレスの長さは7文字以上、50文字以内です。")))
+		It("50文字より大きい場合,errs.DomainErrorが返る", func() {
+			Expect(length_over).To(Equal(errs.NewDomainError("ユーザのメールアドレスの長さは7文字以上、50文字以内です。")))
 		})
 	})
 
 	Context("形式の検証", Label("無効な形式"), func() {
 		It("無効な形式の場合、errors.DomainErrorが返る", func() {
-			Expect(invalid_format).To(Equal(errors.NewDomainError("ユーザのメールアドレスの形式が正しくありません。")))
+			Expect(invalid_format).To(Equal(errs.NewDomainError("ユーザのメールアドレスの形式が正しくありません。")))
 		})
 	})
 
 	Context("ドメイン部分の検証", Label("無効なドメイン"), func() {
 		It("ドメイン部分が '.' で始まっている場合、errors.DomainErrorが返る", func() {
-			Expect(invalid_domain).To(Equal(errors.NewDomainError("ユーザのメールアドレスのドメイン部分が '@' で始まっています。")))
+			Expect(invalid_domain).To(Equal(errs.NewDomainError("ユーザのメールアドレスのドメイン部分が '@' で始まっています。")))
 		})
 	})
 
@@ -106,10 +106,10 @@ var _ = Describe("Userエンティティを構成する値オブジェクト", O
 })
 
 var _ = Describe("Userエンティティを構成する値オブジェクト", Ordered, Label("UserPassword構造体の生成"), func() {
-	var short_password *errors.DomainError   // パスワードが8文字未満
-	var long_password *errors.DomainError    // パスワードが15文字を超える
-	var invalid_password *errors.DomainError // パスワードに英数字や記号が含まれていない
-	var valid_password *users.UserPassword   // 有効なパスワード
+	var short_password *errs.DomainError   // パスワードが8文字未満
+	var long_password *errs.DomainError    // パスワードが15文字を超える
+	var invalid_password *errs.DomainError // パスワードに英数字や記号が含まれていない
+	var valid_password *users.UserPassword // 有効なパスワード
 
 	BeforeAll(func() {
 		_, short_password = users.NewUserPassword("short")
@@ -120,16 +120,16 @@ var _ = Describe("Userエンティティを構成する値オブジェクト", O
 
 	Context("パスワードの長さの検証", Label("無効な長さ"), func() {
 		It("8文字未満の場合、errors.DomainErrorが返る", func() {
-			Expect(short_password).To(Equal(errors.NewDomainError("ユーザのパスワードの長さは8文字以上、15文字以内です。")))
+			Expect(short_password).To(Equal(errs.NewDomainError("ユーザのパスワードの長さは8文字以上、15文字以内です。")))
 		})
 		It("15文字を超える場合、errors.DomainErrorが返る", func() {
-			Expect(long_password).To(Equal(errors.NewDomainError("ユーザのパスワードの長さは8文字以上、15文字以内です。")))
+			Expect(long_password).To(Equal(errs.NewDomainError("ユーザのパスワードの長さは8文字以上、15文字以内です。")))
 		})
 	})
 
 	Context("パスワードの内容の検証", Label("無効な内容"), func() {
 		It("英数字や記号を含まない場合、errors.DomainErrorが返る", func() {
-			Expect(invalid_password).To(Equal(errors.NewDomainError("パスワードには半角の英数字や記号を含める必要があります。")))
+			Expect(invalid_password).To(Equal(errs.NewDomainError("パスワードには半角の英数字や記号を含める必要があります。")))
 		})
 	})
 

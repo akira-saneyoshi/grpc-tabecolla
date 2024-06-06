@@ -1,0 +1,4 @@
+data/
+initdb.d/
+log/
+secrets/

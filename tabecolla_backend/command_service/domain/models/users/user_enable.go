@@ -1,7 +1,7 @@
 package users
 
 import (
-	"commandservice/errors"
+	"commandservice/errs"
 )
 
 // UserEnable ユーザの有効/無効を保持する値オブジェクト
@@ -15,6 +15,6 @@ func (ins *UserEnable) Value() bool {
 }
 
 // コンストラクタ
-func NewUserEnable(value bool) (*UserEnable, *errors.DomainError) {
+func NewUserEnable(value bool) (*UserEnable, *errs.DomainError) {
 	return &UserEnable{value: value}, nil
 }

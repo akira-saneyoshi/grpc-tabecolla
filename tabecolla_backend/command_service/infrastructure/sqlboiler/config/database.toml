@@ -1,0 +1,12 @@
+[mysql]                         # 使用するRDBMS
+    dbName     = "tabecolla"    # データベース名
+    host       = "commandservice_db"   # ホスト名
+    port       = 3306           # ポート番号
+    user       = "root"         # ユーザー名
+    pass       = "p@ssw0rd"     # パスワード
+    sslmode    = "false"        # SSLモード
+    whitelist = [               # アクセスするデータベースオブジェクト
+        "login_users",          # userテーブル
+        "stores",               # storeテーブル
+        "store_categories"      # store_categoryテーブル
+    ]

@@ -9,7 +9,7 @@ option go_package = "/api/v1/go_pb";
 // パッケージの宣言
 package go_protoc;
 
-//  ユーザ型の定義
+// ユーザ型の定義
 message User {
     string user_id   = 1; // ユーザId
     string user_name = 2; // ユーザ名
@@ -17,14 +17,14 @@ message User {
     string user_password = 4; // ユーザパスワード
     bool user_enable = 5; // ユーザの有効/無効
 }
-//  飲食店カテゴリ型の定義
+// 飲食店カテゴリ型の定義
 message StoreCategory {
-    string store_category_id    = 1; // 飲食店カテゴリ番号
+    string store_category_uid  = 1; // 飲食店カテゴリ番号
     string store_category_name = 2; // 飲食店カテゴリ名
 }
-//  飲食店型の定義
+// 飲食店型の定義
 message Store {
-    string store_id                  = 1; // 飲食店Id
+    string store_id                 = 1; // 飲食店Id
     string store_name               = 2; // 飲食店名
     string store_place              = 3; // 飲食店の場所
     optional StoreCategory store_category = 4; // 飲食店カテゴリ

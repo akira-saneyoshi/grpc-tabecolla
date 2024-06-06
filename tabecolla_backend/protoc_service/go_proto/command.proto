@@ -1,5 +1,5 @@
 //
-//  CommandService用のParam型とResult型を定義したprotoファイル
+// CommandService用のParam型とResult型を定義したprotoファイル
 //
 
 // ライセンスヘッダ:バージョン3を利用
@@ -29,7 +29,7 @@ enum CRUD {
 //*****************************************
 // ユーザ更新用param型とResult型の定義
 //*****************************************
-//  ユーザ更新Param型
+// ユーザ更新Param型
 message UserUpParam {
     CRUD   crud       = 1; // 更新の種類
     string user_id    = 2; // ユーザId
@@ -38,7 +38,7 @@ message UserUpParam {
     string user_password = 5; // ユーザパスワード
     bool user_enable  = 6; // ユーザの有効/無効
 }
-//  ユーザ更新Result型
+// ユーザ更新Result型
 message UserUpResult {
     User user         = 1;   // 更新結果
     ApiError  error   = 2;   // 更新エラー
@@ -48,7 +48,7 @@ message UserUpResult {
 //*****************************************
 // ユーザの更新サービス型の定義
 //*****************************************
-//  ユーザ更新サービス型
+// ユーザ更新サービス型
 service UserCommand {
     // ユーザを追加した結果を返す
     rpc Create(UserUpParam) returns(UserUpResult);
@@ -61,27 +61,27 @@ service UserCommand {
 //*****************************************
 // 飲食店カテゴリ更新用param型とResult型の定義
 //*****************************************
-//  飲食店カテゴリ更新Param型
+// 飲食店カテゴリ更新Param型
 message StoreCategoryUpParam {
     CRUD   crud    = 1; // 更新の種類
-    string store_category_id     = 2; // 飲食店カテゴリ番号
+    string store_category_uid   = 2; // 飲食店カテゴリ番号
     string store_category_name  = 3; // 飲食店カテゴリ名
 }
-//  飲食店更新Param型
+// 飲食店更新Param型
 message StoreUpParam {
     CRUD   crud            = 1; // 更新の種類
     string store_id        = 2; // 飲食店番号
     string store_name      = 3; // 飲食店名
     string store_place     = 4; // 飲食店の場所
-    string storeCategoryId  = 5; // 飲食店カテゴリ番号
+    string storeCategoryUid = 5; // 飲食店カテゴリ番号
 }
-//  飲食店カテゴリ更新Result型
+// 飲食店カテゴリ更新Result型
 message StoreCategoryUpResult {
     StoreCategory   storeCategory = 1; // 更新結果
     ApiError      error           = 2; // 更新エラー
     google.protobuf.Timestamp timestamp = 3;    // タイムスタンプ
 }
-//  飲食店更新Result型
+// 飲食店更新Result型
 message StoreUpResult {
     Store store     = 1; // 更新結果
     ApiError  error = 2; // 更新エラー
@@ -91,7 +91,7 @@ message StoreUpResult {
 //*****************************************
 // 飲食店カテゴリと飲食店の更新サービス型の定義
 //*****************************************
-//  飲食店カテゴリ更新サービス型
+// 飲食店カテゴリ更新サービス型
 service StoreCategoryCommand {
     // 飲食店カテゴリを追加した結果を返す
     rpc Create(StoreCategoryUpParam) returns(StoreCategoryUpResult);
@@ -100,7 +100,7 @@ service StoreCategoryCommand {
     // 飲食店カテゴリを削除した結果を返す
     rpc Delete(StoreCategoryUpParam) returns(StoreCategoryUpResult);
 }
-//  飲食店更新サービス型
+// 飲食店更新サービス型
 service StoreCommand {
     // 飲食店を追加した結果を返す
     rpc Create(StoreUpParam) returns(StoreUpResult);

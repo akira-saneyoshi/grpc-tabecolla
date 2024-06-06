@@ -1,7 +1,7 @@
 package users
 
 import (
-	"commandservice/errors"
+	"commandservice/errs"
 )
 
 // ユーザを表すEntity
@@ -48,16 +48,16 @@ func (ins *User) ChangeUserEnable(user_enable *UserEnable) {
 }
 
 // 同一性検証メソッド
-func (ins *User) Equals(obj *User) (bool, *errors.DomainError) {
+func (ins *User) Equals(obj *User) (bool, *errs.DomainError) {
 	if obj == nil {
-		return false, errors.NewDomainError("引数でnilが指定されました。")
+		return false, errs.NewDomainError("引数でnilが指定されました。")
 	}
 	result := ins.user_id.Equals(obj.UserId())
 	return result, nil
 }
 
 // コンストラクタ
-func NewUser(user_id *UserId, user_name *UserName, user_mail *UserMail, user_password *UserPassword, user_enable *UserEnable) (*User, *errors.DomainError) {
+func NewUser(user_id *UserId, user_name *UserName, user_mail *UserMail, user_password *UserPassword, user_enable *UserEnable) (*User, *errs.DomainError) {
 	// ユーザエンティティのインスタンスを生成して返す
 	return &User{
 		user_id:       user_id,

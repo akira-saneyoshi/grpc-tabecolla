@@ -59,6 +59,12 @@ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 protoc --go_out=./ --go-grpc_out=./ go_proto/*.proto
 ```
 
+3. Model層におけるGoコードの生成(commandコンテナで実行)
+
+```
+sqlboiler mysql -c config/database.toml -o models -p models --no-tests --wipe
+```
+
 ### protocの共通項目の定義
 
 ```
