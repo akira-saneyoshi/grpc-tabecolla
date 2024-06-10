@@ -119,3 +119,17 @@ Test Suite Passed
 ```
 
 </details>
+
+### MySQLコンテナのmy.cnfをマウントするときの備忘録
+
+- 概要
+
+コンテナログにて下記のWarningが出ているとき、my.cnfが反映されない問題が起きる。
+
+```
+[Warning] World-writable config file '/etc/mysql/conf.d/my.cnf' is ignored.
+```
+
+- 解決策
+
+windowsで環境構築している場合、/etc/mysql/conf.d/my.cnfにマウントしたファイルは読み取り専用にしとかなければならない

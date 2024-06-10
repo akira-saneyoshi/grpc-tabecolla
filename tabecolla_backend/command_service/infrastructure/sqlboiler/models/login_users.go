@@ -24,15 +24,15 @@ import (
 // LoginUser is an object representing the database table.
 type LoginUser struct { // ID
 	ID int `boil:"id" json:"id" toml:"id" yaml:"id"`
-	// ãƒ¦ãƒ¼ã‚¶IDæ–‡å­—åˆ—
+	// ユーザID文字列
 	UserID string `boil:"user_id" json:"user_id" toml:"user_id" yaml:"user_id"`
-	// ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹
+	// メールアドレス
 	UserMail string `boil:"user_mail" json:"user_mail" toml:"user_mail" yaml:"user_mail"`
-	// ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰
+	// パスワード
 	UserPassword string `boil:"user_password" json:"user_password" toml:"user_password" yaml:"user_password"`
-	// ãƒ¦ãƒ¼ã‚¶å
+	// ユーザ名
 	UserName string `boil:"user_name" json:"user_name" toml:"user_name" yaml:"user_name"`
-	// æœ‰åŠ¹ãƒ•ãƒ©ã‚°
+	// 有効フラグ
 	UserEnable bool `boil:"user_enable" json:"user_enable" toml:"user_enable" yaml:"user_enable"`
 
 	R *loginUserR `boil:"-" json:"-" toml:"-" yaml:"-"`

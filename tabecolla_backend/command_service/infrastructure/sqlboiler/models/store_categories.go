@@ -24,9 +24,9 @@ import (
 // StoreCategory is an object representing the database table.
 type StoreCategory struct { // ID
 	ID int `boil:"id" json:"id" toml:"id" yaml:"id"`
-	// é£²é£Ÿåº—ã‚«ãƒ†ã‚´ãƒªIDæ–‡å­—åˆ—
+	// 飲食店カテゴリID文字列
 	ObjID string `boil:"obj_id" json:"obj_id" toml:"obj_id" yaml:"obj_id"`
-	// é£²é£Ÿåº—ã‚«ãƒ†ã‚´ãƒªå
+	// 飲食店カテゴリ名
 	Name string `boil:"name" json:"name" toml:"name" yaml:"name"`
 
 	R *storeCategoryR `boil:"-" json:"-" toml:"-" yaml:"-"`

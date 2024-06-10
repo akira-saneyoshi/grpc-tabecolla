@@ -50,9 +50,20 @@ create table `stores` (
   `id` INT not null AUTO_INCREMENT comment 'ID'
   , `obj_id` VARCHAR(36) not null comment '飲食店ID文字列'
   , `name` VARCHAR(30) not null comment '飲食店名:C_TX_STORE'
-  , `place` VARCHAR(100) not null comment '飲食店の場所'
+  , `place` VARCHAR(250) not null comment '飲食店の場所'
   , `store_category_id` VARCHAR(36) not null comment '飲食店カテゴリID'
   , constraint `stores_PKC` primary key (`id`)
   , unique key `stores_IDX1` (`obj_id`)
   , foreign key `store_categories_FK` (`store_category_id`) references `store_categories` (`obj_id`)
 ) comment '飲食店';
+
+INSERT INTO store_categories (obj_id,name) VALUES ('aaaa1111-22bb-33cc-44dd-555555eeeeee','和食');
+INSERT INTO store_categories (obj_id,name) VALUES ('bbbb1111-22aa-dd33-cc44-eeeeee666666','洋食');
+INSERT INTO store_categories (obj_id,name) VALUES ('cccc1111-22dd-33cc-44dd-555555eeeeee','和食(鍋)');
+INSERT INTO store_categories (obj_id,name) VALUES ('dddd1111-cc22-dd33-cc44-ffffff666666','イタリアン');
+INSERT INTO store_categories (obj_id,name) VALUES ('eeee1111-22ff-33cc-44dd-666666eeeeee','ハンバーガー');
+
+INSERT INTO stores (obj_id,name,place,store_category_id) VALUES ('ffff1111-99cc-bb88-22aa-77ee77ee77ee','モスバーガー','東京都墨田区押上１丁目２３−１ 土居ビル １階','eeee1111-22ff-33cc-44dd-666666eeeeee');
+INSERT INTO stores (obj_id,name,place,store_category_id) VALUES ('1111dddd-4567-ffff-abcd-5555fda34fcb','蟻月','東京都墨田区押上１丁目１−２ 東京スカイツリータウン・ソラマチ ３１Ｆ','cccc1111-22dd-33cc-44dd-555555eeeeee');
+INSERT INTO stores (obj_id,name,place,store_category_id) VALUES ('ee22ee44-fcba-76dc-cd78-333fcbacd377','Issare shu cielo','東京都墨田区押上1-1-2 東京ソラマチ 30F','dddd1111-cc22-dd33-cc44-ffffff666666');
+INSERT INTO stores (obj_id,name,place,store_category_id) VALUES ('1432daca-cfbd-cd55-cbb7-acc367b75v78','RIGOLETTO ROTISSERIE AND WINE','東京都墨田区押上１丁目１−２','dddd1111-cc22-dd33-cc44-ffffff666666');

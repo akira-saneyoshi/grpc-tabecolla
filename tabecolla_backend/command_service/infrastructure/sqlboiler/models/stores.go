@@ -24,13 +24,13 @@ import (
 // Store is an object representing the database table.
 type Store struct { // ID
 	ID int `boil:"id" json:"id" toml:"id" yaml:"id"`
-	// é£²é£Ÿåº—IDæ–‡å­—åˆ—
+	// 飲食店ID文字列
 	ObjID string `boil:"obj_id" json:"obj_id" toml:"obj_id" yaml:"obj_id"`
-	// é£²é£Ÿåº—å:C_TX_STORE
+	// 飲食店名:C_TX_STORE
 	Name string `boil:"name" json:"name" toml:"name" yaml:"name"`
-	// é£²é£Ÿåº—ã®å ´æ‰€
+	// 飲食店の場所
 	Place string `boil:"place" json:"place" toml:"place" yaml:"place"`
-	// é£²é£Ÿåº—ã‚«ãƒ†ã‚´ãƒªID
+	// 飲食店カテゴリID
 	StoreCategoryID string `boil:"store_category_id" json:"store_category_id" toml:"store_category_id" yaml:"store_category_id"`
 
 	R *storeR `boil:"-" json:"-" toml:"-" yaml:"-"`

@@ -37,10 +37,9 @@ services:
     build:
       context: .
       dockerfile: ./infra/db_command/Dockerfile
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     env_file: ./infra/db_command/db_env_file
     container_name:  commandservice_db
-    command:
-      - --mysql-native-password=ON
     volumes:
       - db-tabecollacommand:/var/lib/mysql
       - ./infra/db_command/my.cnf:/etc/mysql/conf.d/my.cnf
@@ -53,25 +52,25 @@ services:
       - 3306
     links:
       - commandservice
-  queryservice_db:
-    build:
-      context: .
-      dockerfile: ./infra/db_query/Dockerfile
-    env_file: ./infra/db_query/db_env_file
-    container_name:  queryservice_db
-    command:
-      - --mysql-native-password=ON
-    volumes:
-      - db-tabecollaquery:/var/lib/mysql
-      - ./infra/db_query/my.cnf:/etc/mysql/conf.d/my.cnf
-      - ./infra/db_query/sql:/docker-entrypoint-initdb.d
-      - ./infra/db_query/DDL:/etc/ddl
-      - ./infra/logs/query:/var/log/mysql
-    ports:
-      - 3307:3306
-    links:
-      - commandservice
-      - queryservice
+  # queryservice_db:
+  #   build:
+  #     context: .
+  #     dockerfile: ./infra/db_query/Dockerfile
+  #   env_file: ./infra/db_query/db_env_file
+  #   container_name:  queryservice_db
+  #   command:
+  #     - --mysql-native-password=ON
+  #   volumes:
+  #     - db-tabecollaquery:/var/lib/mysql
+  #     - ./infra/db_query/my.cnf:/etc/mysql/conf.d/my.cnf
+  #     - ./infra/db_query/sql:/docker-entrypoint-initdb.d
+  #     - ./infra/db_query/DDL:/etc/ddl
+  #     - ./infra/logs/query:/var/log/mysql
+  #   ports:
+  #     - 3307:3306
+  #   links:
+  #     - commandservice
+  #     - queryservice
 volumes:
   db-tabecollacommand:
-  db-tabecollaquery:
+  # db-tabecollaquery:
