@@ -25,7 +25,7 @@ create table `login_users` (
   , `user_name` VARCHAR(50) not null comment 'ユーザ名'
   , `user_enable` BOOLEAN not null comment '有効フラグ'
   , constraint `login_users_PKC` primary key (`id`)
-  , unique key `stores_IDX1` (`id`)
+  , unique key `users_IDX1` (`id`, `user_mail`)
 ) comment 'ログインユーザ';
 
 -- 飲食店カテゴリ

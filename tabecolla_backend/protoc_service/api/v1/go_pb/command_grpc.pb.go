@@ -27,12 +27,12 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	UserCommand_Create_FullMethodName = "/go_protoc.UserCommand/Create"
-	UserCommand_Update_FullMethodName = "/go_protoc.UserCommand/Update"
-	UserCommand_Delete_FullMethodName = "/go_protoc.UserCommand/Delete"
+	LoginUserCommand_Create_FullMethodName = "/go_protoc.LoginUserCommand/Create"
+	LoginUserCommand_Update_FullMethodName = "/go_protoc.LoginUserCommand/Update"
+	LoginUserCommand_Delete_FullMethodName = "/go_protoc.LoginUserCommand/Delete"
 )
 
-// UserCommandClient is the client API for UserCommand service.
+// LoginUserCommandClient is the client API for LoginUserCommand service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 //
@@ -40,169 +40,169 @@ const (
 // ユーザの更新サービス型の定義
 // *****************************************
 // ユーザ更新サービス型
-type UserCommandClient interface {
+type LoginUserCommandClient interface {
 	// ユーザを追加した結果を返す
-	Create(ctx context.Context, in *UserUpParam, opts ...grpc.CallOption) (*UserUpResult, error)
+	Create(ctx context.Context, in *LoginUserUpParam, opts ...grpc.CallOption) (*LoginUserUpResult, error)
 	// ユーザを更新した結果を返す
-	Update(ctx context.Context, in *UserUpParam, opts ...grpc.CallOption) (*UserUpResult, error)
+	Update(ctx context.Context, in *LoginUserUpParam, opts ...grpc.CallOption) (*LoginUserUpResult, error)
 	// ユーザを削除した結果を返す
-	Delete(ctx context.Context, in *UserUpParam, opts ...grpc.CallOption) (*UserUpResult, error)
+	Delete(ctx context.Context, in *LoginUserUpParam, opts ...grpc.CallOption) (*LoginUserUpResult, error)
 }
 
-type userCommandClient struct {
+type loginUserCommandClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewUserCommandClient(cc grpc.ClientConnInterface) UserCommandClient {
-	return &userCommandClient{cc}
+func NewLoginUserCommandClient(cc grpc.ClientConnInterface) LoginUserCommandClient {
+	return &loginUserCommandClient{cc}
 }
 
-func (c *userCommandClient) Create(ctx context.Context, in *UserUpParam, opts ...grpc.CallOption) (*UserUpResult, error) {
+func (c *loginUserCommandClient) Create(ctx context.Context, in *LoginUserUpParam, opts ...grpc.CallOption) (*LoginUserUpResult, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UserUpResult)
-	err := c.cc.Invoke(ctx, UserCommand_Create_FullMethodName, in, out, cOpts...)
+	out := new(LoginUserUpResult)
+	err := c.cc.Invoke(ctx, LoginUserCommand_Create_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userCommandClient) Update(ctx context.Context, in *UserUpParam, opts ...grpc.CallOption) (*UserUpResult, error) {
+func (c *loginUserCommandClient) Update(ctx context.Context, in *LoginUserUpParam, opts ...grpc.CallOption) (*LoginUserUpResult, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UserUpResult)
-	err := c.cc.Invoke(ctx, UserCommand_Update_FullMethodName, in, out, cOpts...)
+	out := new(LoginUserUpResult)
+	err := c.cc.Invoke(ctx, LoginUserCommand_Update_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userCommandClient) Delete(ctx context.Context, in *UserUpParam, opts ...grpc.CallOption) (*UserUpResult, error) {
+func (c *loginUserCommandClient) Delete(ctx context.Context, in *LoginUserUpParam, opts ...grpc.CallOption) (*LoginUserUpResult, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UserUpResult)
-	err := c.cc.Invoke(ctx, UserCommand_Delete_FullMethodName, in, out, cOpts...)
+	out := new(LoginUserUpResult)
+	err := c.cc.Invoke(ctx, LoginUserCommand_Delete_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// UserCommandServer is the server API for UserCommand service.
-// All implementations must embed UnimplementedUserCommandServer
+// LoginUserCommandServer is the server API for LoginUserCommand service.
+// All implementations must embed UnimplementedLoginUserCommandServer
 // for forward compatibility
 //
 // *****************************************
 // ユーザの更新サービス型の定義
 // *****************************************
 // ユーザ更新サービス型
-type UserCommandServer interface {
+type LoginUserCommandServer interface {
 	// ユーザを追加した結果を返す
-	Create(context.Context, *UserUpParam) (*UserUpResult, error)
+	Create(context.Context, *LoginUserUpParam) (*LoginUserUpResult, error)
 	// ユーザを更新した結果を返す
-	Update(context.Context, *UserUpParam) (*UserUpResult, error)
+	Update(context.Context, *LoginUserUpParam) (*LoginUserUpResult, error)
 	// ユーザを削除した結果を返す
-	Delete(context.Context, *UserUpParam) (*UserUpResult, error)
-	mustEmbedUnimplementedUserCommandServer()
+	Delete(context.Context, *LoginUserUpParam) (*LoginUserUpResult, error)
+	mustEmbedUnimplementedLoginUserCommandServer()
 }
 
-// UnimplementedUserCommandServer must be embedded to have forward compatible implementations.
-type UnimplementedUserCommandServer struct {
+// UnimplementedLoginUserCommandServer must be embedded to have forward compatible implementations.
+type UnimplementedLoginUserCommandServer struct {
 }
 
-func (UnimplementedUserCommandServer) Create(context.Context, *UserUpParam) (*UserUpResult, error) {
+func (UnimplementedLoginUserCommandServer) Create(context.Context, *LoginUserUpParam) (*LoginUserUpResult, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedUserCommandServer) Update(context.Context, *UserUpParam) (*UserUpResult, error) {
+func (UnimplementedLoginUserCommandServer) Update(context.Context, *LoginUserUpParam) (*LoginUserUpResult, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedUserCommandServer) Delete(context.Context, *UserUpParam) (*UserUpResult, error) {
+func (UnimplementedLoginUserCommandServer) Delete(context.Context, *LoginUserUpParam) (*LoginUserUpResult, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedUserCommandServer) mustEmbedUnimplementedUserCommandServer() {}
+func (UnimplementedLoginUserCommandServer) mustEmbedUnimplementedLoginUserCommandServer() {}
 
-// UnsafeUserCommandServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to UserCommandServer will
+// UnsafeLoginUserCommandServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to LoginUserCommandServer will
 // result in compilation errors.
-type UnsafeUserCommandServer interface {
-	mustEmbedUnimplementedUserCommandServer()
+type UnsafeLoginUserCommandServer interface {
+	mustEmbedUnimplementedLoginUserCommandServer()
 }
 
-func RegisterUserCommandServer(s grpc.ServiceRegistrar, srv UserCommandServer) {
-	s.RegisterService(&UserCommand_ServiceDesc, srv)
+func RegisterLoginUserCommandServer(s grpc.ServiceRegistrar, srv LoginUserCommandServer) {
+	s.RegisterService(&LoginUserCommand_ServiceDesc, srv)
 }
 
-func _UserCommand_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserUpParam)
+func _LoginUserCommand_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LoginUserUpParam)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserCommandServer).Create(ctx, in)
+		return srv.(LoginUserCommandServer).Create(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UserCommand_Create_FullMethodName,
+		FullMethod: LoginUserCommand_Create_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserCommandServer).Create(ctx, req.(*UserUpParam))
+		return srv.(LoginUserCommandServer).Create(ctx, req.(*LoginUserUpParam))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserCommand_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserUpParam)
+func _LoginUserCommand_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LoginUserUpParam)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserCommandServer).Update(ctx, in)
+		return srv.(LoginUserCommandServer).Update(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UserCommand_Update_FullMethodName,
+		FullMethod: LoginUserCommand_Update_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserCommandServer).Update(ctx, req.(*UserUpParam))
+		return srv.(LoginUserCommandServer).Update(ctx, req.(*LoginUserUpParam))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserCommand_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserUpParam)
+func _LoginUserCommand_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LoginUserUpParam)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserCommandServer).Delete(ctx, in)
+		return srv.(LoginUserCommandServer).Delete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UserCommand_Delete_FullMethodName,
+		FullMethod: LoginUserCommand_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserCommandServer).Delete(ctx, req.(*UserUpParam))
+		return srv.(LoginUserCommandServer).Delete(ctx, req.(*LoginUserUpParam))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// UserCommand_ServiceDesc is the grpc.ServiceDesc for UserCommand service.
+// LoginUserCommand_ServiceDesc is the grpc.ServiceDesc for LoginUserCommand service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var UserCommand_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "go_protoc.UserCommand",
-	HandlerType: (*UserCommandServer)(nil),
+var LoginUserCommand_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "go_protoc.LoginUserCommand",
+	HandlerType: (*LoginUserCommandServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Create",
-			Handler:    _UserCommand_Create_Handler,
+			Handler:    _LoginUserCommand_Create_Handler,
 		},
 		{
 			MethodName: "Update",
-			Handler:    _UserCommand_Update_Handler,
+			Handler:    _LoginUserCommand_Update_Handler,
 		},
 		{
 			MethodName: "Delete",
-			Handler:    _UserCommand_Delete_Handler,
+			Handler:    _LoginUserCommand_Delete_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

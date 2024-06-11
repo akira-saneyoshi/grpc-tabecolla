@@ -12,5 +12,6 @@ var RepDepend = fx.Options(
 		// Repositoryインターフェイス実装のコンストラクタを指定
 		repository.NewStoreCategoryRepositorySQLBoiler, // 飲食店カテゴリ用Reposititory
 		repository.NewStoreRepositorySQLBoiler,  // 飲食店用Repository
+		repository.NewLoginUserRepositorySQLBoiler,  // ユーザ用Repository
 	),
 )

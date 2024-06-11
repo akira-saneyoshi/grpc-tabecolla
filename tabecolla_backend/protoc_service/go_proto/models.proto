@@ -10,12 +10,12 @@ option go_package = "/api/v1/go_pb";
 package go_protoc;
 
 // ユーザ型の定義
-message User {
-    string user_id   = 1; // ユーザId
-    string user_name = 2; // ユーザ名
-    string user_mail = 3; // メールアドレス
-    string user_password = 4; // ユーザパスワード
-    bool user_enable = 5; // ユーザの有効/無効
+message LoginUser {
+    string login_user_id   = 1; // ユーザId
+    string login_user_name = 2; // ユーザ名
+    string login_user_mail = 3; // メールアドレス
+    string login_user_password = 4; // ユーザパスワード
+    bool login_user_enable = 5; // ユーザの有効/無効
 }
 // 飲食店カテゴリ型の定義
 message StoreCategory {

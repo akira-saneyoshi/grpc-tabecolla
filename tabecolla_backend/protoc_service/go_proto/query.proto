@@ -23,20 +23,20 @@ package go_protoc;
 // ユーザ検索用param型とResult型の定義
 //*****************************************
 // ユーザ検索用Param型
-message UserParam {
-    string user_id = 1; // ユーザId
+message LoginUserParam {
+    string login_user_id = 1; // ユーザId
 }
 // ユーザ複数件を返すResult型
-message UsersResult {
-    repeated User    users = 1; // ユーザ複数
+message LoginUsersResult {
+    repeated LoginUser    login_users = 1; // ユーザ複数
     ApiError         error = 2; // エラー
     google.protobuf.Timestamp timestamp = 3;    // タイムスタンプ
 }
 // ユーザ1件を返すResult型
-message UserResult{
+message LoginUserResult{
     // エラーか検索結果のいずれかを返す
     oneof result {
-        User user = 1; // 検索結果
+        LoginUser login_user = 1; // 検索結果
         ApiError   error = 2; // 検索エラー
     }
     google.protobuf.Timestamp timestamp = 3;    // タイムスタンプ
