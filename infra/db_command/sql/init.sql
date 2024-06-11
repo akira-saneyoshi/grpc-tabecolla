@@ -25,7 +25,7 @@ create table `login_users` (
   , `user_name` VARCHAR(50) not null comment 'ユーザ名'
   , `user_enable` BOOLEAN not null comment '有効フラグ'
   , constraint `login_users_PKC` primary key (`id`)
-  , unique key `users_IDX1` (`id`, `user_mail`)
+  , unique key `users_IDX1` (`user_id`, `user_mail`)
 ) comment 'ログインユーザ';
 
 -- 飲食店カテゴリ
@@ -56,6 +56,10 @@ create table `stores` (
   , unique key `stores_IDX1` (`obj_id`)
   , foreign key `store_categories_FK` (`store_category_id`) references `store_categories` (`obj_id`)
 ) comment '飲食店';
+
+INSERT INTO login_users (user_id, user_mail, user_password, user_name, user_enable) VALUES ('tanaka', 'tanaka@dummy.com', 'Valid123!', '田中太郎', '1');
+INSERT INTO login_users (user_id, user_mail, user_password, user_name, user_enable) VALUES ('yoshida', 'yoshida@dummy.com', 'Valid123!', '吉田茂', '1');
+INSERT INTO login_users (user_id, user_mail, user_password, user_name, user_enable) VALUES ('hayashi', 'hayashi@dummy.com', 'Valid123!', '林直美', '1');
 
 INSERT INTO store_categories (obj_id,name) VALUES ('aaaa1111-22bb-33cc-44dd-555555eeeeee','和食');
 INSERT INTO store_categories (obj_id,name) VALUES ('bbbb1111-22aa-dd33-cc44-eeeeee666666','洋食');

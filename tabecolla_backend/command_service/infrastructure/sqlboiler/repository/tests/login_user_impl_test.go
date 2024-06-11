@@ -53,6 +53,7 @@ var _ = Describe("loginUserRepositorySQLBoiler構造体", Ordered, Label("LoginU
 			Expect(result).To(Equal(errs.NewCRUDError(
 				fmt.Sprintf("%sは既に登録されています。", login_user_id.Value()))))
 		})
+		// TODO: 別の層でエラーロジックの実装可否を検討する。
 		// It("存在しないメールアドレスの場合nilが返る", func() {
 		// 	login_user_mail, _ := loginUsers.NewLoginUserMail("saneyoshi@dummy.com")
 		// 	login_user, _ := loginUsers.NewLoginUser(nil, nil, login_user_mail, nil, nil)
@@ -79,16 +80,16 @@ var _ = Describe("loginUserRepositorySQLBoiler構造体", Ordered, Label("LoginU
 			result := rep.Create(ctx, tran, login_user)
 			Expect(result).To(BeNil())
 		})
+		// TODO: 別の層でエラーロジックの実装可否を検討する。
 		// It("user_idが同じユーザを追加すると、errs.CRUDErrorが返る", func() {
-		// 	login_user_id, _ := loginUsers.NewLoginUserId("tanaka")
+		// 	login_user_id, _ := loginUsers.NewLoginUserId("saneyoshi")
 		// 	login_user_name, _ := loginUsers.NewLoginUserName("實好聖佳")
 		// 	login_user_mail, _ := loginUsers.NewLoginUserMail("saneyoshi@dummy.com")
 		// 	login_user_password, _ := loginUsers.NewLoginUserPassword("Valid123!")
 		// 	login_user_enable, _ := loginUsers.NewLoginUserEnable(true)
-		// 	login_user, _ := loginUsers.BuildLoginUser(login_user_id, login_user_name, login_user_mail, login_user_password, login_user_enable)
+		// 	login_user := loginUsers.BuildLoginUser(login_user_id, login_user_name, login_user_mail, login_user_password, login_user_enable)
 		// 	result := rep.Create(ctx, tran, login_user)
-		// 	err := errs.NewCRUDError("一意制約違反です。")
-		// 	Expect(result).To(Equal(err))
+		// 	Expect(result).To(Equal(errs.NewCRUDError("一意制約違反です。")))
 		// })
 		// It("user_mailが同じユーザを追加すると、errs.CRUDErrorが返る", func() {
 		// 	login_user_id, _ := loginUsers.NewLoginUserId("tanaka")
@@ -114,16 +115,16 @@ var _ = Describe("loginUserRepositorySQLBoiler構造体", Ordered, Label("LoginU
 			Expect(result).To(Equal(errs.NewCRUDError(
 				fmt.Sprintf("ユーザID:%sは存在しないため、更新できませんでした。", login_user.LoginUserId().Value()))))
 		})
-		// It("存在するuser_idを指定すると、nilが返る", func() {
-		// 	login_user_id, _ := loginUsers.NewLoginUserId("tanaka")
-		// 	login_user_name, _ := loginUsers.NewLoginUserName("田中角栄")
-		// 	login_user_mail, _ := loginUsers.NewLoginUserMail("tanaka@dummy.com")
-		// 	login_user_password, _ := loginUsers.NewLoginUserPassword("Valid123!")
-		// 	login_user_enable, _ := loginUsers.NewLoginUserEnable(true)
-		// 	login_user := loginUsers.BuildLoginUser(login_user_id, login_user_name, login_user_mail, login_user_password, login_user_enable)
-		// 	result := rep.UpdateById(ctx, tran, login_user)
-		// 	Expect(result).To(BeNil())
-		// })
+		It("存在するuser_idを指定すると、nilが返る", func() {
+			login_user_id, _ := loginUsers.NewLoginUserId("tanaka")
+			login_user_name, _ := loginUsers.NewLoginUserName("田中角栄")
+			login_user_mail, _ := loginUsers.NewLoginUserMail("tanaka@dummy.com")
+			login_user_password, _ := loginUsers.NewLoginUserPassword("Valid123!")
+			login_user_enable, _ := loginUsers.NewLoginUserEnable(true)
+			login_user := loginUsers.BuildLoginUser(login_user_id, login_user_name, login_user_mail, login_user_password, login_user_enable)
+			result := rep.UpdateById(ctx, tran, login_user)
+			Expect(result).To(BeNil())
+		})
 	})
 	// DeleteById()メソッドのテスト
 	Context("ユーザを削除する", Label("DeleteById"), func() {
@@ -137,7 +138,7 @@ var _ = Describe("loginUserRepositorySQLBoiler構造体", Ordered, Label("LoginU
 			result := rep.DeleteById(ctx, tran, login_user)
 			Expect(result).To(Equal(errs.NewCRUDError(
 				fmt.Sprintf("ユーザID:%sは存在しないため、削除できませんでした。",
-				login_user.LoginUserId().Value()))))
+					login_user.LoginUserId().Value()))))
 		})
 		It("存在するuser_idを指定すると、nilが返る", func() {
 			// 削除対象のユーザを登録する

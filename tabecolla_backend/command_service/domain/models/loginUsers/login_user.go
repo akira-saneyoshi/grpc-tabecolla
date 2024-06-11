@@ -52,19 +52,8 @@ func (ins *LoginUser) Equals(obj *LoginUser) (bool, *errs.DomainError) {
 	if obj == nil {
 		return false, errs.NewDomainError("引数でnilが指定されました。")
 	}
-
-	// login_user_idの比較
-	if !ins.login_user_id.Equals(obj.LoginUserId()) {
-		return false, nil
-	}
-
-	// login_user_mailの比較
-	if !ins.login_user_mail.Equals(obj.LoginUserMail()) {
-		return false, nil
-	}
-
-	// すべての条件が一致した場合
-	return true, nil
+	result := ins.login_user_id.Equals(obj.LoginUserId())
+	return result, nil
 }
 
 // コンストラクタ
@@ -81,12 +70,11 @@ func NewLoginUser(login_user_id *LoginUserId, login_user_name *LoginUserName, lo
 
 // ユーザエンティティの再構築
 func BuildLoginUser(login_user_id *LoginUserId, login_user_name *LoginUserName, login_user_mail *LoginUserMail, login_user_password *LoginUserPassword, login_user_enable *LoginUserEnable) *LoginUser {
-	login_user := LoginUser{ // ユーザエンティティのインスタンスを生成して返す
+	return &LoginUser{ // ユーザエンティティのインスタンスを生成して返す
 		login_user_id:       login_user_id,
 		login_user_name:     login_user_name,
 		login_user_mail:     login_user_mail,
 		login_user_password: login_user_password,
 		login_user_enable:   login_user_enable,
 	}
-	return &login_user
 }
