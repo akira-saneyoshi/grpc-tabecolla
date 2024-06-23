@@ -4,8 +4,13 @@
     port       = 3306           # ポート番号
     user       = "root"         # ユーザー名
     pass       = "p@ssw0rd"     # パスワード
-    sslmode    = "false"        # SSLモード
-    whitelist = [               # アクセスするデータベースオブジェクト
+    testDbName = "tabecolla_test"    # データベース名
+    testHost   = "commandservice_db"   # ホスト名
+    testPort   = 3306           # ポート番号
+    testUser   = "root"         # ユーザー名
+    testPass   = "p@ssw0rd"     # パスワード
+    sslMode    = "false"        # SSLモード
+    whitelist  = [              # アクセスするデータベースオブジェクト
         "login_users",          # userテーブル
         "stores",               # storeテーブル
         "store_categories"      # store_categoryテーブル
